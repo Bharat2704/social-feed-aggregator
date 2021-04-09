@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 module SocialAggregatorHelper
   SOCIAL_HASH = {
     facebook: 'status',
     instagram: 'photo',
     twitter: 'tweet'
-  }
+  }.freeze
 
   def fetch_posts(platform)
     response = api_call(platform)

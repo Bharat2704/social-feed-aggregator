@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 class SocialAggregator < ActiveInteraction::Base
   include SocialAggregatorHelper
 
   def execute
     aggregated_posts = {}
     threads = []
-    SOCIAL_HASH.each do |platform, value|
+    SOCIAL_HASH.each do |platform, _value|
       threads << Thread.new do
         posts = find_posts(platform)
-        aggregated_posts[platform] = posts || "Error occured"
+        aggregated_posts[platform] = posts || 'Error occured'
       end
     end
     threads.each(&:join)
@@ -23,10 +25,8 @@ class SocialAggregator < ActiveInteraction::Base
   end
 
   def cache_posts(posts, platform)
-    if posts
-      posts.map { |element| element[SOCIAL_HASH[platform]] }
-    else
-      FetchSocialWorker.perform_async(platform) and return nil
-    end
+    FetchSocialWorker.perform_async(platform) and return nil unless posts
+
+    posts.map { |element| element[SOCIAL_HASH[platform]] }
   end
 end

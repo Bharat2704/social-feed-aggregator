@@ -27,18 +27,16 @@ module Api
 
     def request(client, http_method:, endpoint:, params: {})
       @response = client.call.public_send(http_method, endpoint, params)
+      return (@data = JSON.parse(@response.body)) if response_successful?
 
-      if response_successful?
-        @data = JSON.parse(@response.body)
-      else
-        raise error_class, "Code: #{@response.status}, message: #{@response.body}"
-      end
+      raise error_class, "Code: #{@response.status}, message: #{@response.body}"
     end
 
     def log_errors
       Rails.logger.info @errors
     end
 
+    # rubocop:disable all
     def error_class
       case @response.status
       when HTTP_BAD_REQUEST_CODE

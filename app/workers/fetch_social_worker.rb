@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FetchSocialWorker
   include Sidekiq::Worker
   include SocialAggregatorHelper
@@ -8,10 +10,9 @@ class FetchSocialWorker
   end
 
   def cache_posts(posts, platform)
-    if posts
+    posts &&
       Rails.cache.fetch(platform, expires_in: 1.minute) do
         posts.map { |element| element[SOCIAL_HASH[platform]] }
       end
-    end
   end
 end

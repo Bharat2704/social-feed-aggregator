@@ -1,14 +1,15 @@
+# frozen_string_literal: true
+
 module Api
   module Instagram
     module V0
       class Request < Base
-
         def perform
           client = Client.new
           request(
             client,
             http_method: :get,
-            endpoint: "/instagram"
+            endpoint: '/instagram'
           )
         end
       end

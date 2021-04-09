@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Api
   class Result
     attr_reader :data, :errors
