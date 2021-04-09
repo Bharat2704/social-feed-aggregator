@@ -2,6 +2,11 @@ module Api
   class Base
     include Api::HttpStatusCodes
     include Api::ApiExceptions
+
+    def self.call(*args, &block)
+      new(*args, &block).call
+    end
+
     def initialize
       @data = {}
       @errors = []

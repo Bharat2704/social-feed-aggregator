@@ -11,13 +11,6 @@ module SocialAggregatorHelper
   end
 
   def api_call(platform)
-    case platform
-    when :facebook
-      Api::Facebook::V0::Request.new.call
-    when :twitter
-      Api::Twitter::V0::Request.new.call
-    else
-      Api::Instagram::V0::Request.new.call
-    end
+    "Api::#{platform.to_s.capitalize}::V0::Request".constantize.call
   end
 end
