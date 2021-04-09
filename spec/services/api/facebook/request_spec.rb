@@ -3,7 +3,7 @@
 require 'rails_helper'
 describe Api::Facebook::V0::Request do
   describe 'request' do
-    let(:client) { Api::Facebook::V0::Client.new }
+    let(:client) { Api::Client.new }
     subject { described_class.new.send(:request, client, http_method: :get, endpoint: '/facebook') }
 
     before do

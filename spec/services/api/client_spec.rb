@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Api::Facebook::V0::Client do
+describe Api::Client do
   describe 'call' do
     subject { described_class.new.call }
 
