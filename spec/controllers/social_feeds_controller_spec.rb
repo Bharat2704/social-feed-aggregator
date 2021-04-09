@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe HomeController, type: :controller do
+describe SocialFeedsController, type: :controller do
   describe 'GET index' do
     before do
       expect_any_instance_of(SocialAggregator).to receive(:execute).once.and_return(aggregator_response)

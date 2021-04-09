@@ -9,6 +9,7 @@ module Api
     ApiRequestsQuotaReachedError = Class.new(APIExceptionError)
     NotFoundError = Class.new(APIExceptionError)
     UnprocessableEntityError = Class.new(APIExceptionError)
+    TimeoutError = Class.new(APIExceptionError)
     ApiError = Class.new(APIExceptionError)
   end
 end

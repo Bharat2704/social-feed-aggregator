@@ -9,8 +9,7 @@ module Api
     end
 
     def call
-      @call ||= Faraday.new(@endpoint) do |client|
-      end
+      @call ||= Faraday.new(@endpoint, request: { timeout: 30 })
     end
   end
 end

@@ -49,6 +49,8 @@ module Api
         NotFoundError
       when HTTP_UNPROCESSABLE_ENTITY_CODE
         UnprocessableEntityError
+      when HTTP_TIMEOUT
+        TimeoutError
       else
         ApiError
       end

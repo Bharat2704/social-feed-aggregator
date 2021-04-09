@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class HomeController < ApplicationController
+class SocialFeedsController < ApplicationController
   def index
     data = SocialAggregator.run
     render json: data.result and return if data.valid? && data.errors.messages.empty?
